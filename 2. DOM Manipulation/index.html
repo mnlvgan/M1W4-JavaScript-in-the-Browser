@@ -1,62 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <style>
-        #favorite-subject {
-            background-color: #FDFD96;
-        }
+      #favorite-subject {
+        background-color: #fdfd96;
+      }
 
-        .newly-created {
-            font-weight: bold;
-        }
+      .newly-created {
+        font-weight: bold;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <ul id="subjects-taken">
-        <li>IT101 - Introduction to Programming</li>
-        <li>IT102 - Fundamentals of C#</li>
-        <li>CS100 - Discrete Structures 1</li>
-        <li>IT123P - Integrative Programming</li>
+      <li>IT101 - Introduction to Programming</li>
+      <li>IT102 - Fundamentals of C#</li>
+      <li>CS100 - Discrete Structures 1</li>
+      <li>IT123P - Integrative Programming</li>
     </ul>
     <script>
-        // Resource: https://www.javascripttutorial.net/javascript-dom/
-        // Resource: https://youtu.be/5fb2aPlgoys?si=oOB2OYliN078Ensg
-        //          - see first 30 minutes of the video
+      // Resource: https://www.javascripttutorial.net/javascript-dom/
+      // Resource: https://youtu.be/5fb2aPlgoys?si=oOB2OYliN078Ensg
+      //          - see first 30 minutes of the video
 
-        // Todo 2.1 Select the unordered list with the id "subjects-taken"
-        // Resource: https://dev.to/alternate_robot/dom-selectors-in-javascript-344i
+      // Todo 2.1 Select the unordered list with the id "subjects-taken"
+      // Resource: https://dev.to/alternate_robot/dom-selectors-in-javascript-344i
+      const list = document.getElementById("subjects-taken");
+      console.log(list);
 
-        // Checkpoint 2.1 What are the other ways to select elements in the DOM?
-        // Answer:
+      // Checkpoint 2.1 What are the other ways to select elements in the DOM?
+      // Answer: ID, Class, Tag, Attribute
 
-        // Todo 2.2 Set the text of the second list item to "IT102 - Python Fundamentals"
-        // Resource: https://www.javascripttutorial.net/javascript-dom/javascript-get-child-element/
+      // Todo 2.2 Set the text of the second list item to "IT102 - Python Fundamentals"
+      // Resource: https://www.javascripttutorial.net/javascript-dom/javascript-get-child-element/
+      let ulItems = document.querySelectorAll("#subjects-taken > *");
+      ulItems[1].innerText = "IT102 - Python Fundamentals";
 
-        // Checkpoint 3.2 What is the difference between innerText, textContent, and innerHTML. When should you use one over the other?
-        // Answer:
+      // Checkpoint 3.2 What is the difference between innerText, textContent, and innerHTML. When should you use one over the other?
+      // Answer:innerText returns all text contained by an element and all its child elements.
+      //        textContent provides all text contained by an element and all its children, including any text used for formatting purposes only.
+      //        innerHTML returns all text, including HTML tags, that is contained by an element.
+      //        When to use them depends on your needs: textContent for all text (excluding HTML tags), innerText for visible text (excluding hidden or styled elements), and innerHTML for manipulating or retrieving the full HTML content within an element
 
-        // Todo 2.3 Create another list item, and add it as a child of the unordered list
-        //          Set the text of the list item to your favorite subject
-        // Resource: https://www.javascripttutorial.net/dom/manipulating/create-a-dom-element/
+      // Todo 2.3 Create another list item, and add it as a child of the unordered list
+      //          Set the text of the list item to your favorite subject
+      // Resource: https://www.javascripttutorial.net/dom/manipulating/create-a-dom-element/
+      const e = document.createElement("li");
+      e.innerText = "History";
+      list.appendChild(e);
 
-        // Todo 2.4 Set the id attribute of the list item you created to "favorite-subject".
-        //          Set the class of the list item to "newly-created"
+      // Todo 2.4 Set the id attribute of the list item you created to "favorite-subject".
+      //          Set the class of the list item to "newly-created"
+      e.setAttribute("id", "favorite-subject");
+      e.classList.add("newly-created");
 
-        // Todo 2.5 Delete the third list item in the unordered list
+      // Todo 2.5 Delete the third list item in the unordered list
+      let menu = document.getElementById("subjects-taken");
+      menu.removeChild(menu.children[2]);
 
-        // Checkpoint 2.3 What is the difference between node and element?
-        // Answer:
+      // Checkpoint 2.3 What is the difference between node and element?
+      // Answer:A node is a generic term for any item in the DOM  including elements, attributes, text, etc. While an element specifically refers to structural components like <div> or <p>.
 
-        // Bonus Todo 2.6 Select the parent of the unordered list.
+      // Bonus Todo 2.6 Select the parent of the unordered list.
+      let parentOfList = list.parentElement;
+      console.log("parent", parentOfList);
 
-        // Bonus Todo 2.7 Select the previous sibling of the list item you previously created
+      // Bonus Todo 2.7 Select the previous sibling of the list item you previously created
+      let previousSibling = e.previousElementSibling;
+      console.log("previous sibling", previousSibling);
     </script>
-</body>
-
+  </body>
 </html>
